@@ -87,9 +87,9 @@ class AddonOptionalPackages
      */
     public function setAddonComposerJson(): void
     {
-        $addonName=$this->createAddonName();
+        $this->createAddonName();
         $this->setAddonDescription();
-        $this->setAddonNameSpace($addonName);
+        $this->setAddonNameSpace();
         $this->setAddonLicense();
         $this->setAddonType();
     }
@@ -126,26 +126,25 @@ class AddonOptionalPackages
      * @author itjack
      * @date 2023/2/6 15:22
      */
-    public function createAddonName(): string
+    public function createAddonName(): void
     {
-        $addonName = $this->io->ask("<info>请输入您的插件名称quick-frame/demo：</info>", 'quick-frame/demo');
-        $addonName = trim('/', str_replace('\\', '/', $addonName));
+        $addonName = $this->io->ask("<info>请输入您的插件名称(quick-frame/demo)：</info>", 'quick-frame/demo');
+        $addonName = trim(str_replace('\\', '/', $addonName), '/');
         $this->addonOption['name'] = $addonName;
-        return $addonName;
     }
 
 
     /**
      * 设置插件命名空间
+     * @param string $addonName
      * @return void
      * @link 1092428238@qq.com
      * @author itjack
      * @date 2023/2/6 16:11
      */
-    public function setAddonNameSpace(string $addonName): void
+    public function setAddonNameSpace(): void
     {
-       // $defaultNameSpace = $this->fetchNameSpace($this->addonOption['name']);
-        $defaultNameSpace = $this->fetchNameSpace($addonName);
+        $defaultNameSpace = $this->fetchNameSpace($this->addonOption['name']);
         $nameSpace = $this->io->ask("<info>请输入插件名称空间（{$defaultNameSpace}）：</info>", $defaultNameSpace);
         $nameSpace = trim(str_replace('/', '\\', $nameSpace), '\\');
         $ConfigProviderContent = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
