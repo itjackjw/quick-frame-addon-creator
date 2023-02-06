@@ -87,9 +87,9 @@ class AddonOptionalPackages
      */
     public function setAddonComposerJson(): void
     {
-        $this->createAddonName();
+        $addonName=$this->createAddonName();
         $this->setAddonDescription();
-        $this->setAddonNameSpace();
+        $this->setAddonNameSpace($addonName);
         $this->setAddonLicense();
         $this->setAddonType();
     }
@@ -126,11 +126,12 @@ class AddonOptionalPackages
      * @author itjack
      * @date 2023/2/6 15:22
      */
-    public function createAddonName(): void
+    public function createAddonName(): string
     {
         $addonName = $this->io->ask("<info>请输入您的插件名称quick-frame/demo：</info>", 'quick-frame/demo');
         $addonName = trim('/', str_replace('\\', '/', $addonName));
         $this->addonOption['name'] = $addonName;
+        return $addonName;
     }
 
 
@@ -141,9 +142,10 @@ class AddonOptionalPackages
      * @author itjack
      * @date 2023/2/6 16:11
      */
-    public function setAddonNameSpace(): void
+    public function setAddonNameSpace(string $addonName): void
     {
-        $defaultNameSpace = $this->fetchNameSpace($this->addonOption['name']);
+       // $defaultNameSpace = $this->fetchNameSpace($this->addonOption['name']);
+        $defaultNameSpace = $this->fetchNameSpace($addonName);
         $nameSpace = $this->io->ask("<info>请输入插件名称空间（{$defaultNameSpace}）：</info>", $defaultNameSpace);
         $nameSpace = trim(str_replace('/', '\\', $nameSpace), '\\');
         $ConfigProviderContent = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
