@@ -3,7 +3,7 @@
     "description": "用于生成快速生成QuickFrame系统框架插件",
     "type": "project",
     "keywords": ["php","hyperf","QuickFrame","quick-frame-addon-creator","itjackjw"],
-    "license": "GPL3.0",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "江伟",
