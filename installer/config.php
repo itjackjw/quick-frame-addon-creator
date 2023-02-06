@@ -1,5 +1,6 @@
 <?php
 return [
+    'packages' => [],
     'require-dev' => [],
     'questions' => [],
     'directory' => [
