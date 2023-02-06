@@ -149,7 +149,7 @@ class AddonOptionalPackages
         $nameSpace = trim(str_replace('/', '\\', $nameSpace), '\\');
         $ConfigProviderContent = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
         $ConfigProviderContent = str_replace('%NAMESPACE%', $nameSpace, $ConfigProviderContent);
-        file_get_contents(__DIR__ . '/../src/ConfigProvider.php', $ConfigProviderContent);
+        file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $ConfigProviderContent);
         @unlink(__DIR__ . '/../src/.gitkeep');
         $this->addonOption['autoload']['psr-4'][$nameSpace . '\\'] = 'src/';
         $this->addonOption['extra']['hyperf']['config'] = $nameSpace . '\\ConfigProvider';
