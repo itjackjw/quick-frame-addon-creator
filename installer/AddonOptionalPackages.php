@@ -115,7 +115,7 @@ class AddonOptionalPackages
      */
     public function setAddonDescription(): void
     {
-        $this->addonOption['description'] = $this->io->ask('<info>请输入您的插件描述</info>', '');
+        $this->addonOption['description'] = $this->io->ask('<info>请输入您的插件描述：</info>', '');
     }
 
 
