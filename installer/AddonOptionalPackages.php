@@ -370,6 +370,10 @@ class AddonOptionalPackages
             unset($this->addonOption['require'][$packageName], $this->composerRequires[$packageName]);
             $this->addonOption['require'][$packageName] = $packageVersion;
             $this->composerDevRequires[$packageName] = $link;
+        } else {
+            unset($this->addonOption['require-dev'][$packageName], $this->composerDevRequires[$packageName]);
+            $this->addonOption['require'][$packageName] = $packageVersion;
+            $this->composerRequires[$packageName] = $link;
         }
         switch (VersionParser::parseStability($packageVersion)) {
             case 'dev':
