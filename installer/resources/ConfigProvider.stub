@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 namespace %NAMESPACE%;
 
-use Core\base\BaseConfigProvider;
+use Quickframe\Framework\Config\BaseConfigProvider;
 
 class ConfigProvider extends BaseConfigProvider
 {
