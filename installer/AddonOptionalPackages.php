@@ -150,6 +150,14 @@ class AddonOptionalPackages
         $ConfigProviderContent = file_get_contents(__DIR__ . '/resources/ConfigProvider.stub');
         $ConfigProviderContent = str_replace('%NAMESPACE%', $nameSpace, $ConfigProviderContent);
         file_put_contents(__DIR__ . '/../src/ConfigProvider.php', $ConfigProviderContent);
+        //创建插件
+        $AddonContent = file_get_contents(__DIR__ . '/resources/Addon.stub');
+        $AddonContent = str_replace('%NAMESPACE%', $nameSpace, $AddonContent);
+        file_put_contents(__DIR__ . '/../src/Addon.php', $AddonContent);
+        //创建应用配置
+        $configName = str_replace('/', '-', $this->addonOption['name']);
+        $AddonConfigContent = file_get_contents(__DIR__ . '/resources/AddonConfig.stub');
+        file_put_contents(__DIR__ . '/../src/Config/autoload/'.$configName.'.php', $AddonConfigContent);
         @unlink(__DIR__ . '/../src/.gitkeep');
         $this->addonOption['autoload']['psr-4'][$nameSpace . '\\'] = 'src/';
         $this->addonOption['extra']['hyperf']['config'] = $nameSpace . '\\ConfigProvider';
