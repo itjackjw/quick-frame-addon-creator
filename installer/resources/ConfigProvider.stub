@@ -25,7 +25,7 @@ class ConfigProvider extends BaseConfigProvider
      */
     public function __invoke(): array
     {
-        return $this->initConfigProvider(__DIR__ . '/config/autoload');
+        return $this->initConfigProvider(__DIR__ . '/Config/autoload');
     }
 }
 
